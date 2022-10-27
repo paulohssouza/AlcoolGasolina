@@ -1,6 +1,9 @@
 package com.cursoandroid.ph.alcoolgasolina;
 
+import android.content.DialogInterface;
+import android.graphics.drawable.Drawable;
 import android.support.design.widget.TextInputEditText;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,8 +26,19 @@ public class MainActivity extends AppCompatActivity {
     public void calcBestPrice (View view) {
         String priceAlcool = inputAlcool.getText().toString();
         String priceGas = inputGas.getText().toString();
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("Alerta!");
+        alert.setMessage("Digite o preço dos dois combustíveis.");
+        alert.setCancelable(false);
+        alert.setIcon(R.drawable.kisspngiconsgasoline);
+        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
         if (!validateInputs(priceAlcool, priceGas)) {
-            textResult.setText("Digite todos os valores.");
+            alert.show();
         } else {
             double priceAlc = Double.parseDouble(priceAlcool);
             double priceG = Double.parseDouble(priceGas);
